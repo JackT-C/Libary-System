@@ -9,8 +9,8 @@ public class Main {
         private static ArrayList<String> booklibrary = new ArrayList<>();
         public static void main(String[] args) {
             Login();
-            String addbook = Scan("Type Y if you wish to add a book, type N if you want to use another service ");
-            if (addbook.contains("Y")) {
+            String addbook = Scan("Do you want to add a book? ");
+            if (addbook.contains("Y") || addbook.contains("y")) {
                 Scanner s = new Scanner(System.in);
                 System.out.println("how many books do you wish to add? ");
                 int booknum = s.nextInt();
@@ -18,30 +18,29 @@ public class Main {
                     booklibrary.add(getbookdetails());
                 }
             }
-            String checkbook = Scan("Type Y if you wish to lookup a book, type N if you want to use another service ");
-            if (checkbook.contains("Y")) {
+            String checkbook = Scan("Do you want to lookup a book? ");
+            if (checkbook.contains("Y") || addbook.contains("y")) {
                 Booklookup();
             }
             CreateFIle();
             WriteToFile();
         }
-
         public static String Scan(String question) {
             System.out.println(question);
             Scanner s = new Scanner(System.in);
             return s.nextLine();
         }
         public static String getbookdetails() {
-            String bookname = Scan("What is the books name? ");
-            String authorname = Scan("What is the name of the author? ");
-            String genre = Scan("What genre is the book? ");
-            Integer ISBN = Integer.valueOf(Scan("What is the books ISBN? (4 Digits)"));
+            String bookname = Scan("name: ");
+            String authorname = Scan("author: ");
+            String genre = Scan("genre: ");
+            Integer ISBN = Integer.valueOf(Scan("ISBN (4 Digits):"));
             return (bookname + ", " + authorname + ", " + genre + ", "+ISBN);
         }
         public static void Booklookup() {
             String infogiven = Scan("please provide any details you have of the book eg book title, isbn, author, genre");
-            if (booklibrary.contains(infogiven)) {
-                System.out.println("book is in the library in position "+booklibrary.stream().findAny());
+            if (booklibrary.toString().contains(infogiven)) {
+                System.out.println("book is in the library");
             } else {
                 System.out.println("sorry we don't have that book");
             }
@@ -69,28 +68,12 @@ public class Main {
             }
         }
         public static void Login() {
-            String username = Scan("Username: ");
-            String password = Scan("Password: ");
-            String validUsername = "Jack";
-            String validUsername2 = "Emily";
-            String validUsername3 = "Kvetch";
-            String validpassword = "validpassword";
-            String validpassword2 = "password";
-            if(username.contains(validUsername)){
-                System.out.println("Username recognised ");
+            ArrayList<String> usernames = new ArrayList<>();
+            ArrayList<String> passwords = new ArrayList<>();
+            usernames.add("Kvetch");
+            passwords.add("password");
+            String userInputname = Scan("username: ");
+            String userInputpw = Scan("password: ");
+            if (usernames.toString().contains(userInputname)){
+                
             }
-            if(username.contains(validUsername2)){
-                System.out.println("Username recognised ");
-            }
-            if(username.contains(validUsername3)){
-                System.out.println("Username recognised ");
-            }
-            if(password.contains(validpassword)){
-                System.out.println("Access granted ");
-            }
-            if(password.contains(validpassword2)){
-                System.out.println("Access granted ");
-            }
-        }
-
-    }
